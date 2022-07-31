@@ -1,13 +1,23 @@
 import libs/fileHandleUtils
 import libs/constants
+import libs/validations
+import libs/errors
 
 proc main() =
   echo "start..."
   echo "read setting file."
-  readSettingJson(SETTING_FILEPATH)
+
+  if isExistFile(SETTING_FILEPATH):
+    readSettingJson(SETTING_FILEPATH)
+  else:
+    quit("Setting file" & FILE_NOT_EXISTS)
 
   let dataFilePath = "./examples/sample.csv"
-  readCsv(dataFilePath)
+  if isExistFile(dataFilePath):
+    readCsv(dataFilePath)
+  else:
+    quit("Data file" & FILE_NOT_EXISTS)
+
   echo "done."
 
 

@@ -9,7 +9,6 @@ installExt    = @["nim"]
 binDir        = "bin"
 bin           = @["measure_effect"]
 
-
 # Dependencies
 
 requires "nim >= 1.6.6"

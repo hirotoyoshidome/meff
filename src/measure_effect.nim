@@ -21,7 +21,10 @@ proc main() =
   elif pCount == 1:
     execType = paramStr(1)
 
-  if execType == "correlation":
+  if execType == "help":
+    showHelp()
+    quit(0)
+  elif execType == "correlation":
     # read setting file.
     if isExistFile(SETTING_FILEPATH):
       readSettingJson(SETTING_FILEPATH)
@@ -36,6 +39,7 @@ proc main() =
     else:
       echo "Data file" & FILE_NOT_EXISTS
       quit(1)
+    quit(0)
 
 
 when isMainModule:

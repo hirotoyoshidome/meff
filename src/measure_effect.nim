@@ -1,7 +1,10 @@
-# This is just an example to get you started. A typical hybrid package
-# uses this file as the main entry point of the application.
+import libs/fileHandleUtils
 
-import measure_effectpkg/submodule
+proc main() =
+  echo "start..."
+  echo "done."
+
 
 when isMainModule:
-  echo(getWelcomeMessage())
+  main()
+

@@ -1,11 +1,14 @@
 import std/parsecsv
 import std/streams
-import std/strutils
 import std/json
-import std/tables
+import ../core/calc
+import ../core/vector
+import constants
+import strutils
+import errors
 
 
-proc readCsv*(filepath: string) =
+proc readCsv*(filepath: string, execType: string) =
   # read data as CSV file.
   var st = newFileStream(filepath, FileMode.fmRead)
   if st == nil:
@@ -14,13 +17,23 @@ proc readCsv*(filepath: string) =
   var p: CsvParser
   open(p, st, filePath)
 
-  var columns: seq[string]
-  if readRow(p):
-    columns = p.row
-  echo  columns
-  echo  columns.len
-  while readRow(p):
-    echo p.row
+  if parseEnum[EXEC_TYPE](execType) == CORRELATION:
+    var columns: seq[string]
+    if readRow(p):
+      columns = p.row
+    #echo columns
+    let colNum: int = columns.len
+    if colNum >= 3 and columns[0] == DATE_COL_NAME:
+      # TODO current implementation is colNum 3 only.
+      var data: seq[Vec2]
+      while readRow(p):
+        var date = p.row[0]
+        var v: Vec2 = [parseFloat(p.row[1]), parseFloat(p.row[2])]
+        data.add(v)
+      correlation(data)
+    else:
+      echo DATA_CSV_FORMAT_ERROR
+
   close(p)
 
 

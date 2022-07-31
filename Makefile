@@ -1,11 +1,11 @@
-.PHONY:	build	run	help	test
+.PHONY:	build	run-with-build	help	test
 
 .SILENT:
 build:
 	nimble build
 
-run:
-	./bin/menim correlation
+run-with-build:
+	nimble build && ./bin/menim correlation
 
 help:
 	./bin/menim help

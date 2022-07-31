@@ -3,6 +3,7 @@ import libs/constants
 import libs/validations
 import libs/errors
 import std/os
+import std/strutils
 
 
 proc showHelp() =
@@ -21,10 +22,10 @@ proc main() =
   elif pCount == 1:
     execType = paramStr(1)
 
-  if execType == "help":
+  if parseEnum[EXEC_TYPE](execType) == HELP:
     showHelp()
     quit(0)
-  elif execType == "correlation":
+  elif parseEnum[EXEC_TYPE](execType) == CORRELATION:
     # read setting file.
     if isExistFile(SETTING_FILEPATH):
       readSettingJson(SETTING_FILEPATH)
@@ -35,7 +36,7 @@ proc main() =
     # read data file.
     let dataFilePath = "./examples/sample.csv"
     if isExistFile(dataFilePath):
-      readCsv(dataFilePath)
+      readCsv(dataFilePath, execType)
     else:
       echo "Data file" & FILE_NOT_EXISTS
       quit(1)

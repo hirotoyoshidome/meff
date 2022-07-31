@@ -1,11 +1,14 @@
-.PHONY:	build	run	test
+.PHONY:	build	run	help	test
 
 .SILENT:
 build:
 	nimble build
 
 run:
-	./measure_effect
+	./bin/measure_effect correlation
+
+help:
+	./bin/measure_effect
 
 test:
 	nimble test

@@ -6,6 +6,7 @@ description   = "measurement of effectiveness for some release."
 license       = "MIT"
 srcDir        = "src"
 installExt    = @["nim"]
+binDir        = "bin"
 bin           = @["measure_effect"]
 
 

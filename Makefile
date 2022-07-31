@@ -5,10 +5,10 @@ build:
 	nimble build
 
 run:
-	./bin/measure_effect correlation
+	./bin/menim correlation
 
 help:
-	./bin/measure_effect
+	./bin/menim help
 
 test:
 	nimble test

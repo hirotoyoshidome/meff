@@ -1,4 +1,4 @@
-# measure-effect
+# menim
 Measurement of Effectiveness for some release.
 
 
@@ -7,4 +7,12 @@ Measurement of Effectiveness for some release.
 ```
 cp settings.json.template settings.json
 ```
+
+### build.
+
+```
+nimble build
+```
+
+Above command execute, build output at `bin` directory as `menim`.
 

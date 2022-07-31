@@ -1,4 +1,4 @@
-.PHONY:	build	run
+.PHONY:	build	run	test
 
 .SILENT:
 build:
@@ -6,4 +6,7 @@ build:
 
 run:
 	./measure_effect
+
+test:
+	nimble test
 

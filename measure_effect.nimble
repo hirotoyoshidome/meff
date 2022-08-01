@@ -2,12 +2,12 @@
 
 version       = "0.1.0"
 author        = "hirotoyoshidome"
-description   = "measurement of effectiveness for some release."
+description   = "meff is a measurement of effectiveness for some release."
 license       = "MIT"
 srcDir        = "src"
 installExt    = @["nim"]
 binDir        = "bin"
-bin           = @["menim"]
+bin           = @["meff"]
 
 # Dependencies
 

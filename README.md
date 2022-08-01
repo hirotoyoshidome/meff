@@ -1,5 +1,5 @@
-# menim
-Measurement of Effectiveness for some release.
+# meff
+meff is a Measurement of Effectiveness for some release.
 
 
 ### init.
@@ -14,5 +14,5 @@ cp settings.json.template settings.json
 nimble build
 ```
 
-Above command execute, build output at `bin` directory as `menim`.
+Above command execute, build output at `bin` directory as `meff`.
 

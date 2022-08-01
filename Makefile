@@ -5,10 +5,10 @@ build:
 	nimble build
 
 run-with-build:
-	nimble build && ./bin/menim correlation
+	nimble build && ./bin/meff correlation
 
 help:
-	./bin/menim help
+	./bin/meff help
 
 test:
 	nimble test

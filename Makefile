@@ -10,6 +10,9 @@ run-with-build:
 help:
 	./bin/meff help
 
+deploy:
+	sh install.sh
+
 test:
 	nimble test
 

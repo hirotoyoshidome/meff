@@ -30,7 +30,8 @@ proc readCsv*(filepath: string, execType: string) =
         var date = p.row[0]
         var v: Vec2 = [parseFloat(p.row[1]), parseFloat(p.row[2])]
         data.add(v)
-      correlation(data)
+      let correl: float = correlation(data)
+      echo correl
     else:
       echo DATA_CSV_FORMAT_ERROR
 

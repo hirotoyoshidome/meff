@@ -16,3 +16,10 @@ nimble build
 
 Above command execute, build output at `bin` directory as `meff`.
 
+
+### install.
+
+```
+sh install.sh
+```
+

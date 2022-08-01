@@ -1,5 +1,5 @@
 # meff
-meff is a Measurement of Effectiveness for some release.
+meff for Measurement of Effectiveness for some release.
 
 
 ### init.

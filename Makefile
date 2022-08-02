@@ -4,8 +4,11 @@
 build:
 	nimble build
 
-run-with-build:
-	nimble build && ./bin/meff correlation
+correlation:
+	nimble build && ./bin/meff correlation ./examples/sample.csv
+
+graph:
+	nimble build && ./bin/meff graph ./examples/sample.csv
 
 help:
 	./bin/meff help

@@ -3,6 +3,7 @@ import std/streams
 import std/json
 import ../core/calc
 import ../core/vector
+import ../core/graph
 import constants
 import strutils
 import errors
@@ -17,7 +18,7 @@ proc readCsv*(filepath: string, execType: string) =
   var p: CsvParser
   open(p, st, filePath)
 
-  if parseEnum[EXEC_TYPE](execType) == CORRELATION:
+  if parseEnum[EXEC_TYPE](execType) == CORRELATION or parseEnum[EXEC_TYPE](execType) == GRAPH:
     var columns: seq[string]
     if readRow(p):
       columns = p.row
@@ -26,12 +27,17 @@ proc readCsv*(filepath: string, execType: string) =
     if colNum >= 3 and columns[0] == DATE_COL_NAME:
       # TODO current implementation is colNum 3 only.
       var data: seq[Vec2]
+      var dateSeq: seq[string]
       while readRow(p):
-        var date = p.row[0]
+        var date: string = p.row[0]
         var v: Vec2 = [parseFloat(p.row[1]), parseFloat(p.row[2])]
         data.add(v)
-      let correl: float = correlation(data)
-      echo correl
+        dateSeq.add(date)
+      if parseEnum[EXEC_TYPE](execType) == CORRELATION:
+        let correl: float = correlation(data)
+        echo correl
+      elif parseEnum[EXEC_TYPE](execType) == GRAPH:
+        showGraph(data, dateSeq)
     else:
       echo DATA_CSV_FORMAT_ERROR
 

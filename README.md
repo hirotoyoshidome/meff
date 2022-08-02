@@ -6,6 +6,7 @@ meff for Measurement of Effectiveness for some release.
 
 ```
 cp settings.json.template settings.json
+nimble install
 ```
 
 ### build.

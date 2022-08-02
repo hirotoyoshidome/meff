@@ -5,11 +5,11 @@ import libs/errors
 import std/os
 import std/strutils
 
-
 proc showHelp() =
   echo """
   first argument :
     correlation - calc corrrelation.
+    graph       - show graph as html.
     help        - show help.
   """
 
@@ -36,6 +36,18 @@ proc main() =
   elif parseEnum[EXEC_TYPE](execType) == CORRELATION:
     if pCount == 2:
       # read data file.
+      let dataFilePath = paramStr(2)
+      if isExistFile(dataFilePath):
+        readCsv(dataFilePath, execType)
+      else:
+        echo "Data file" & FILE_NOT_EXISTS
+        quit(1)
+    else:
+      echo "Please Data file path as Second argument."
+      quit(1)
+  elif parseEnum[EXEC_TYPE](execType) == GRAPH:
+    if pCount == 2:
+      # read daa file.
       let dataFilePath = paramStr(2)
       if isExistFile(dataFilePath):
         readCsv(dataFilePath, execType)

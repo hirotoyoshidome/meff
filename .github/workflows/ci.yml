@@ -1,0 +1,24 @@
+name: meff CI
+on:
+  push:
+    paths:
+      - 'test/**/'
+      - 'src/**'
+      - 'meff.nimble'
+      - '.github/workflows/ci.yml'
+jobs:
+  build:
+    runs-on: ubunt-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Nim.
+        uses: alaviss/setup-nim@0.1.1
+        with:
+          path: 'nim'
+          version: 'version-1-4'
+      - name: Install Dependencies.
+        run: nimble install
+      - name: Run Test.
+        run: nimble test
+

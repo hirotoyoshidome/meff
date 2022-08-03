@@ -8,7 +8,7 @@ on:
       - '.github/workflows/ci.yml'
 jobs:
   build:
-    runs-on: ubunt-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2

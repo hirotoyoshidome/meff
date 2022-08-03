@@ -18,7 +18,7 @@ jobs:
           path: 'nim'
           version: 'version-1-4'
       - name: Install Dependencies.
-        run: nimble install
+        run: nimble install -y
       - name: Run Test.
         run: nimble test
 

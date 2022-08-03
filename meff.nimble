@@ -11,6 +11,7 @@ bin           = @["meff"]
 
 # Dependencies
 
-requires "nim >= 1.6.6"
+#requires "nim >= 1.6.6"
+requires "nim >= 1.4"
 requires "plotly >= 0.3.2"
 

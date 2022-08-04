@@ -1,5 +1,12 @@
 {
-  "title": "My Project.",
-  "description": "This is my service measurement of effectiveness."
+  "graph": {
+    "title": "Sample Graph",
+    "size": 8,
+    "width": 1200,
+    "height": 400,
+    "colors": [
+      "orange",
+      "green"
+    ]
+  }
 }
-

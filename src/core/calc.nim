@@ -36,4 +36,3 @@ proc correlation*(v: seq[Vec2]): float =
 
   let correl: float = co / (avgSeq[0] * avgSeq[1])
   return correl
-

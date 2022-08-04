@@ -4,6 +4,10 @@ import libs/validations
 import libs/errors
 import std/os
 import std/strutils
+import core/vector
+import core/calc
+import core/graph
+
 
 proc showHelp() =
   echo """
@@ -32,7 +36,11 @@ proc main() =
       # read data file.
       let dataFilePath = paramStr(2)
       if isExistFile(dataFilePath):
-        readCsv(dataFilePath, execType)
+        let (data, dateSeq) = readCsv(dataFilePath, execType)
+        discard dateSeq
+
+        let correl: float = correlation(data)
+        echo correl
       else:
         echo "Data file" & FILE_NOT_EXISTS
         quit(1)
@@ -43,11 +51,22 @@ proc main() =
     if 2 <= pCount and pCount <= 4:
       # read daa file.
       let dataFilePath = paramStr(2)
+      var data: seq[Vec2]
+      var dateSeq: seq[string]
       if isExistFile(dataFilePath):
-        readCsv(dataFilePath, execType)
+        (data, dateSeq) = readCsv(dataFilePath, execType)
       else:
         echo "Data file" & FILE_NOT_EXISTS
         quit(1)
+
+      var option: GraphOption
+      if pCount == 2:
+        option = GraphOption(title: DEFAULT_GRAPH_TITLE,
+          size:  DEFAULT_GRAPH_SIZE,
+          width: DEFAULT_GRAPH_WIDTH,
+          height: DEFAULT_GRAPH_HEIGHT,
+          colors: DEFAULT_GRAPH_COLORS
+        )
       if pCount == 3:
         let settingPath: string = paramStr(3)
         if GRAPH_OPTION_SETTING_FILE in settingPath:
@@ -76,6 +95,8 @@ proc main() =
         else:
           echo SETTING_FILE_VALUE_ERROR
           quit(1)
+      # show.
+      showGraph(data, dateSeq)
     else:
       echo "Please Data file path as Second argument."
       quit(1)

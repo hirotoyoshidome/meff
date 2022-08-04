@@ -1,15 +1,13 @@
 import std/parsecsv
 import std/streams
 import std/json
-import ../core/calc
 import ../core/vector
-import ../core/graph
 import constants
 import strutils
 import errors
 
 
-proc readCsv*(filepath: string, execType: string) =
+proc readCsv*(filepath: string, execType: string): (seq[Vec2], seq[string]) =
   # read data as CSV file.
   var st = newFileStream(filepath, FileMode.fmRead)
   if st == nil:
@@ -18,36 +16,32 @@ proc readCsv*(filepath: string, execType: string) =
   var p: CsvParser
   open(p, st, filePath)
 
+  # TODO now only Vec2. (current implementation is colNum 3 only.)
+  var data: seq[Vec2]
+  var dateSeq: seq[string]
+
   if parseEnum[EXEC_TYPE](execType) == CORRELATION or parseEnum[EXEC_TYPE](execType) == GRAPH:
     var columns: seq[string]
     if readRow(p):
       columns = p.row
-    #echo columns
     let colNum: int = columns.len
     if colNum >= 3 and columns[0] == DATE_COL_NAME:
       # TODO current implementation is colNum 3 only.
-      var data: seq[Vec2]
-      var dateSeq: seq[string]
       while readRow(p):
         var date: string = p.row[0]
         var v: Vec2 = [parseFloat(p.row[1]), parseFloat(p.row[2])]
         data.add(v)
         dateSeq.add(date)
-      if parseEnum[EXEC_TYPE](execType) == CORRELATION:
-        let correl: float = correlation(data)
-        echo correl
-      elif parseEnum[EXEC_TYPE](execType) == GRAPH:
-        showGraph(data, dateSeq)
     else:
       echo DATA_CSV_FORMAT_ERROR
+      quit(1)
 
   close(p)
-
+  return (data, dateSeq)
 
 proc readSettingJson*(filepath: string) =
-  # read setting file as JSON.
+  # read setting file as JSON (for graph).
   var jsonStr: string = parseFile(filepath).pretty
   var obj = parseJson(jsonStr)
   echo obj
-  echo obj["title"].getStr()
-
+  # echo obj["title"].getStr()

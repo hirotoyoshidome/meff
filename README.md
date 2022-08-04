@@ -23,4 +23,3 @@ Above command execute, build output at `bin` directory as `meff`.
 ```
 sh install.sh
 ```
-

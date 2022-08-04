@@ -33,4 +33,3 @@ proc showGraph*(v: seq[Vec2], dates: seq[string]) =
   let layout = Layout(title: "sample", width: 1200, height: 400, xaxis: Axis(title:"x"), yaxis: Axis(title:"y"),autosize:false)
   let p = Plot[int](layout: layout, traces: @[d1, d2])
   p.show()
-

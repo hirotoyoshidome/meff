@@ -18,4 +18,3 @@ deploy:
 
 test:
 	nimble test
-

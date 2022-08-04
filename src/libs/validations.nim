@@ -6,4 +6,3 @@ proc isExistFile*(filepath: string): bool =
     return true
   else:
     return false
-

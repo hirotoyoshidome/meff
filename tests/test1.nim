@@ -8,4 +8,3 @@ import libs/fileHandleUtils
 
 #test "correct welcome":
 #  check getWelcomeMessage() == "Hello, World!"
-

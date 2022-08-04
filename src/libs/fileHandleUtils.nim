@@ -39,9 +39,23 @@ proc readCsv*(filepath: string, execType: string): (seq[Vec2], seq[string]) =
   close(p)
   return (data, dateSeq)
 
-proc readSettingJson*(filepath: string) =
+proc readSettingJson*(filepath: string): GraphOption =
   # read setting file as JSON (for graph).
   var jsonStr: string = parseFile(filepath).pretty
   var obj = parseJson(jsonStr)
-  echo obj
-  # echo obj["title"].getStr()
+  obj = obj["graph"]
+
+  # TODO: add validation.
+
+  var colors: seq[string]
+  for c in obj["colors"].getElems():
+    colors.add(c.getStr())
+  let option: GraphOption = GraphOption(
+    title: obj["title"].getStr(),
+    size:  obj["size"].getInt(),
+    width: obj["width"].getInt(),
+    height: obj["height"].getInt(),
+    colors: colors
+  )
+
+  return option

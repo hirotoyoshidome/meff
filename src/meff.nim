@@ -61,7 +61,8 @@ proc main() =
 
       var option: GraphOption
       if pCount == 2:
-        option = GraphOption(title: DEFAULT_GRAPH_TITLE,
+        option = GraphOption(
+          title: DEFAULT_GRAPH_TITLE,
           size:  DEFAULT_GRAPH_SIZE,
           width: DEFAULT_GRAPH_WIDTH,
           height: DEFAULT_GRAPH_HEIGHT,
@@ -73,9 +74,9 @@ proc main() =
           var settingPathVal: string = settingPath.replace(GRAPH_OPTION_SETTING_FILE, "")
           if settingPathVal.len > 0:
             if isExistFile(settingPathVal):
-              readSettingJson(settingPathVal)
+              option = readSettingJson(settingPathVal)
             else:
-              echo "Setting FIle" & FILE_NOT_EXISTS
+              echo "Setting File" & FILE_NOT_EXISTS
               quit(1)
           else:
             echo SETTING_FILE_VALUE_ERROR
@@ -88,15 +89,15 @@ proc main() =
         if GRAPH_OPTION_SETTING_FILE == settingPath:
           var settingPathVal: string = paramStr(4)
           if isExistFile(settingPathVal):
-            readSettingJson(settingPathVal)
+            option = readSettingJson(settingPathVal)
           else:
-            echo "Setting FIle" & FILE_NOT_EXISTS
+            echo "Setting File" & FILE_NOT_EXISTS
             quit(1)
         else:
           echo SETTING_FILE_VALUE_ERROR
           quit(1)
       # show.
-      showGraph(data, dateSeq)
+      showGraph(data, dateSeq, option)
     else:
       echo "Please Data file path as Second argument."
       quit(1)

@@ -1,15 +1,16 @@
 import plotly
 import chroma
 import vector
+import ../libs/constants
 
-
-proc showGraph*(v: seq[Vec2], dates: seq[string]) =
+proc showGraph*(v: seq[Vec2], dates: seq[string], option: GraphOption) =
   # show graph.
+  # TODO use option.colors .
   let color1 = @[Color(r:0.9, g:0.4, b:0.0, a: 1.0)]
   let color2 = @[Color(r:0.2, g:0.9, b:0.2, a: 1.0)]
   var d1 = Trace[int](mode: PlotMode.LinesMarkers, `type`: PlotType.Scatter)
   var d2 = Trace[int](mode: PlotMode.LinesMarkers, `type`: PlotType.Scatter)
-  let size = @[8.int]
+  let size = @[option.size.int]
   d1.marker = Marker[int](size: size, color: color1)
   d2.marker = Marker[int](size: size, color: color2)
 
@@ -30,6 +31,6 @@ proc showGraph*(v: seq[Vec2], dates: seq[string]) =
   d1.text = dates
   d2.text = dates
   
-  let layout = Layout(title: "sample", width: 1200, height: 400, xaxis: Axis(title:"x"), yaxis: Axis(title:"y"),autosize:false)
+  let layout = Layout(title: option.title, width: option.width, height: option.height, xaxis: Axis(title:"x"), yaxis: Axis(title:"y"),autosize:false)
   let p = Plot[int](layout: layout, traces: @[d1, d2])
   p.show()

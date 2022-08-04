@@ -1,6 +1,9 @@
-.PHONY:	build	run-with-build	help	test
+.PHONY:	thishelp	build	correlation	graph	graph-settingfile	help	deploy	test
 
 .SILENT:
+thishelp:
+	echo "This is development only use."
+
 build:
 	nimble build
 
@@ -9,6 +12,9 @@ correlation:
 
 graph:
 	nimble build && ./bin/meff graph ./examples/sample.csv
+
+graph-settingfile:
+	nimble build && ./bin/meff graph ./examples/sample.csv --setting-file settings.json
 
 help:
 	./bin/meff help

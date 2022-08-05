@@ -2,12 +2,16 @@ import plotly
 import chroma
 import vector
 import ../libs/constants
+import std/tables
+
 
 proc showGraph*(v: seq[Vec2], dates: seq[string], option: GraphOption) =
   # show graph.
-  # TODO use option.colors .
-  let color1 = @[Color(r:0.9, g:0.4, b:0.0, a: 1.0)]
-  let color2 = @[Color(r:0.2, g:0.9, b:0.2, a: 1.0)]
+  let c1: seq[float] = COLORS[option.colors[0]]
+  let c2: seq[float] = COLORS[option.colors[1]]
+  let color1: seq[Color] = @[Color(r: c1[0], g: c1[1], b: c1[2], a: c1[3])]
+  var color2: seq[Color] = @[Color(r: c2[0], g: c2[1], b: c2[2], a: c2[3])]
+
   var d1 = Trace[int](mode: PlotMode.LinesMarkers, `type`: PlotType.Scatter)
   var d2 = Trace[int](mode: PlotMode.LinesMarkers, `type`: PlotType.Scatter)
   let size = @[option.size.int]

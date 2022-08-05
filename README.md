@@ -1,16 +1,25 @@
 ![CI](https://github.com/hirotoyoshidome/meff/actions/workflows/ci.yml/badge.svg)
-# meff
-meff for Measurement of Effectiveness for some release.
+**meff** for Measurement of Effectiveness for some release.
 
+**// WARNING //**
+This Repository is not production level.
 
-### init.
+### DOCUMENTATION
+* [Correlation](./docs/correlation.md)
+* [Graph](./docs/graph.md)
+
+### Dependencies
+* [nim-plotly](https://github.com/SciNim/nim-plotly) : meff is using this for rendering graph.
+
+### Initialization
+* If you want use `graph` command, please set under a setting file. (Optional)
 
 ```
 cp settings.json.template settings.json
 nimble install
 ```
 
-### build.
+### Build
 
 ```
 nimble build
@@ -19,7 +28,8 @@ nimble build
 Above command execute, build output at `bin` directory as `meff`.
 
 
-### install.
+### Installation
+* Shell file is providing. `install.sh` is install to `~/.local/bin` directory.
 
 ```
 sh install.sh

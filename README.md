@@ -1,5 +1,5 @@
 ![CI](https://github.com/hirotoyoshidome/meff/actions/workflows/ci.yml/badge.svg)
-**meff** for Measurement of Effectiveness for some release.
+**meff** is a CLI tool measuring the Effect of Web Services.
 
 **// WARNING //**
 This Repository is not production level.

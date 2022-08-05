@@ -3,7 +3,7 @@
 # the letter 't').
 
 import unittest
-import libs/fileHandleUtils
+import libs/filehandle
 
 
 #test "correct welcome":

@@ -1,10 +1,12 @@
 ## Graph
-meff's graph task is rendering graph as html.
+`graph` task render graph as html.
 
-You ready csv file that first column is `date` as `yyyy-MM-dd`, Numeric data from the 2nd column onwards.
+You ready a CSV file.
+* 1st column: Column name is `date`, Value is formatted `yyyy-MM-dd`
+* 2nd column -: Column name is anything, Value is numeric data.
 
 
-* Graph setting is default version.
+### Command
 
 ```
 meff graph {csv file path}
@@ -12,30 +14,30 @@ meff graph {csv file path}
 
 
 ### Option
-* Graph setting is custom version.
+* You can change some graph style.
 
 ```
 meff graph {csv file path} --setting-file {setting file path}
 ```
 
-* Alias version.
+Or Alias version.
 
 ```
 meff graph {csv file path} -s {setting file path}
 ```
 
 ### About Graph setting file
-Graph setting file is JSON file.
+A Graph setting file is JSON format.
 
-A Template file is this repository's top directory `settings.json.template`.
+There is a template file (`settings.json.template`) at root directory of this repository.
 
-You can specify some graph's stuff.
+You can specify some value is below.
 
-* `title` - Graph title.
-* `size` - Graph marker size.
-* `width` - Width of graph area.
-* `height` - height of graph area.
-* `colors` - Line color. You can choose below colors.
+* `title` - Graph Title.
+* `size` - Graph Marker Size.
+* `width` - Width of Graph Area.
+* `height` - Height of Graph Area.
+* `colors` - Line Color. You can choose below colors.
   * red
   * blue
   * green

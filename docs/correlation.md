@@ -1,13 +1,17 @@
 ## Correlation
-meff's correlation task is very simply work.
+`correlation` task is very simply work.
 
-You ready csv file that first column is `date` as `yyyy-MM-dd`, Numeric data from the 2nd column onwards.
+You ready a CSV file.
+* 1st column: Column name is `date`, Value is formatted `yyyy-MM-dd`
+* 2nd column -: Column name is anything, Value is numeric data.
+
+### Command
 
 ```
 meff correlation {csv file path}
 ```
 
-meff is calclation correlation as `Pearson correlation coefficient`.
+> Calculation of Correlation is using `Pearson correlation coefficient`.
 
 ### Option
-no option.
+No option.

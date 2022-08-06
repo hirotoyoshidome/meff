@@ -51,3 +51,17 @@ test "covariance-1":
   let actual: float = round(covariance(v, avg, vLen), 4)
   let expected: float = 33.3333
   check actual == expected
+
+test "correlation-1":
+  let x: Vec2 = [170.0, 60.0]
+  let y: Vec2 = [175.0, 70.0]
+  let z: Vec2 = [180.0, 80.0]
+
+  var v: seq[Vec2]
+  v.add(x)
+  v.add(y)
+  v.add(z)
+
+  let actual: float = correlation(v)
+  let expected: float = 1.0
+  check actual == expected

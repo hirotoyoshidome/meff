@@ -12,6 +12,7 @@ proc avg*(v: seq[Vec2], vLen: float): seq[float] =
   return @[xSum / vLen, ySum / vLen]
 
 proc standard_deviation*(v: seq[Vec2], avg: seq[float], vLen: float): seq[float] =
+  # calc standard deviation from vector data.
   var xSum: float = 0
   var ySum: float = 0
   for row in v:
@@ -22,6 +23,7 @@ proc standard_deviation*(v: seq[Vec2], avg: seq[float], vLen: float): seq[float]
   return @[sdx, sdy]
 
 proc covariance*(v: seq[Vec2], avg: seq[float], vLen: float): float =
+  # calc covariance from vector data.
   var xySum: float = 0
   for row in v:
     xySum = xySum + ((row[0] - avg[0]) * (row[1] - avg[1]))
@@ -34,5 +36,5 @@ proc correlation*(v: seq[Vec2]): float =
   let sdSeq: seq[float] = standard_deviation(v, avgSeq, vLen)
   let co: float = covariance(v, avgSeq, vLen)
 
-  let correl: float = co / (avgSeq[0] * avgSeq[1])
+  let correl: float = co / (sdSeq[0] * sdSeq[1])
   return correl

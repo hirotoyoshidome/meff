@@ -3,5 +3,6 @@ settings.json
 
 # tests.
 tests/*
+!tests/testdata
 !tests/*.nim
 !tests/*.nims

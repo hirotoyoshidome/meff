@@ -1,6 +1,6 @@
 import libs/filehandle
 import libs/constants
-import libs/validations
+import libs/validator
 import libs/errors
 import std/os
 import std/strutils

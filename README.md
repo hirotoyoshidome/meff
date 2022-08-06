@@ -1,8 +1,5 @@
 ![CI](https://github.com/hirotoyoshidome/meff/actions/workflows/ci.yml/badge.svg)    
-**meff** is a CLI tool measuring the Effect of Web Services.
-
-**// WARNING //**    
-This Repository is not production level.
+**meff** is a CLI tool measuring the Effect of Web Services Data.
 
 ### DOCUMENTATION
 * [Correlation](./docs/correlation.md)
@@ -12,7 +9,7 @@ This Repository is not production level.
 * [nim-plotly](https://github.com/SciNim/nim-plotly) : meff is using this for rendering graph.
 
 ### Initialization
-* If you want use `graph` command, please set under a setting file. (Optional)
+* If you want to use `graph` task, Please ready a setting file. (Optional)
 
 ```
 cp settings.json.template settings.json
@@ -20,16 +17,15 @@ nimble install
 ```
 
 ### Build
+* Compiling sources and out a binary(as `meff`) to `bin/` directory.
 
 ```
 nimble build
 ```
 
-Above command execute, build output at `bin` directory as `meff`.
-
 
 ### Installation
-* Shell file is providing. `install.sh` is install to `~/.local/bin` directory.
+* A Shell file is providing. Installing a binary to `~/.local/bin` directory.
 
 ```
 sh install.sh

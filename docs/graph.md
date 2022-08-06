@@ -18,6 +18,12 @@ meff graph {csv file path}
 meff graph {csv file path} --setting-file {setting file path}
 ```
 
+* Alias version.
+
+```
+meff graph {csv file path} -s {setting file path}
+```
+
 ### About Graph setting file
 Graph setting file is JSON file.
 
@@ -29,4 +35,8 @@ You can specify some graph's stuff.
 * `size` - Graph marker size.
 * `width` - Width of graph area.
 * `height` - height of graph area.
-* `colors` - Line color.
+* `colors` - Line color. You can choose below colors.
+  * red
+  * blue
+  * green
+  * orange

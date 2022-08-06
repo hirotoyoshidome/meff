@@ -70,8 +70,8 @@ proc main() =
         )
       if pCount == 3:
         let settingPath: string = paramStr(3)
-        if GRAPH_OPTION_SETTING_FILE in settingPath:
-          var settingPathVal: string = settingPath.replace(GRAPH_OPTION_SETTING_FILE, "")
+        if GRAPH_OPTION_SETTING_FILE in settingPath or GRAPH_OPTION_SETTING_FILE_ALIAS in settingPath:
+          var settingPathVal: string = settingPath.replace(GRAPH_OPTION_SETTING_FILE, "").replace(GRAPH_OPTION_SETTING_FILE_ALIAS, "")
           if settingPathVal.len > 0:
             if isExistFile(settingPathVal):
               option = readSettingJson(settingPathVal)
@@ -86,7 +86,7 @@ proc main() =
           quit(1)
       if pCount == 4:
         let settingPath: string = paramStr(3)
-        if GRAPH_OPTION_SETTING_FILE == settingPath:
+        if GRAPH_OPTION_SETTING_FILE == settingPath or GRAPH_OPTION_SETTING_FILE_ALIAS == settingPath:
           var settingPathVal: string = paramStr(4)
           if isExistFile(settingPathVal):
             option = readSettingJson(settingPathVal)

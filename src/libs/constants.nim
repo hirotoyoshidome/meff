@@ -18,6 +18,7 @@ type
 
 
 const GRAPH_OPTION_SETTING_FILE*: string = "--setting-file"
+const GRAPH_OPTION_SETTING_FILE_ALIAS*: string = "-s"
 
 const DATE_COL_NAME*: string = "date"
 
@@ -29,6 +30,8 @@ const DEFAULT_GRAPH_HEIGHT*: int = 400
 const DEFAULT_GRAPH_COLORS*: seq[string] = @["orange", "green"]
 
 const COLORS*: Table[string, seq[float]] = {
+  "red": @[1.0, 0.0, 0.0, 1.0],
+  "green": @[0.0, 1.0, 0.0, 1.0],
+  "blue": @[0.0, 0.0, 1.0, 1.0],
   "orange": @[0.9, 0.4, 0.0, 1.0],
-  "green": @[0.2, 0.9, 0.2, 1.0]
 }.toTable

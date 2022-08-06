@@ -2,7 +2,7 @@ import vector
 import std/math
 
 
-proc avg(v: seq[Vec2], vLen: float): seq[float] =
+proc avg*(v: seq[Vec2], vLen: float): seq[float] =
   # calc average from vector data.
   var xSum: float = 0
   var ySum: float = 0
@@ -11,7 +11,7 @@ proc avg(v: seq[Vec2], vLen: float): seq[float] =
     ySum = ySum + row[1]
   return @[xSum / vLen, ySum / vLen]
 
-proc standard_deviation(v: seq[Vec2], avg: seq[float], vLen: float): seq[float] =
+proc standard_deviation*(v: seq[Vec2], avg: seq[float], vLen: float): seq[float] =
   var xSum: float = 0
   var ySum: float = 0
   for row in v:
@@ -21,7 +21,7 @@ proc standard_deviation(v: seq[Vec2], avg: seq[float], vLen: float): seq[float] 
   let sdy = sqrt(ySum/vLen)
   return @[sdx, sdy]
 
-proc covariance(v: seq[Vec2], avg: seq[float], vLen: float): float =
+proc covariance*(v: seq[Vec2], avg: seq[float], vLen: float): float =
   var xySum: float = 0
   for row in v:
     xySum = xySum + ((row[0] - avg[0]) * (row[1] - avg[1]))

@@ -1,2 +1,7 @@
 meff
 settings.json
+
+# tests.
+tests/*
+!tests/*.nim
+!tests/*.nims

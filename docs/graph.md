@@ -5,6 +5,11 @@ You ready a CSV file.
 * 1st column: Column name is `date`, Value is formatted `yyyy-MM-dd`
 * 2nd column -: Column name is anything, Value is numeric data.
 
+[Sample Data](../examples/sample.csv)
+
+### Demo
+
+![graph](./readme-graph.png)
 
 ### Command
 

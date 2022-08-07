@@ -5,6 +5,7 @@ import ../core/vector
 import constants
 import strutils
 import errors
+import validator
 
 
 proc readCsv*(filepath: string, execType: string): (seq[Vec2], seq[string]) =
@@ -27,13 +28,18 @@ proc readCsv*(filepath: string, execType: string): (seq[Vec2], seq[string]) =
     let colNum: int = columns.len
     if colNum >= 3 and columns[0] == DATE_COL_NAME:
       # TODO current implementation is colNum 3 only.
+      var i: int = 1
       while readRow(p):
-        var date: string = p.row[0]
-        var v: Vec2 = [parseFloat(p.row[1]), parseFloat(p.row[2])]
-        data.add(v)
-        dateSeq.add(date)
+        if isFloat(p.row[1]) and isFloat(p.row[2]):
+          let date: string = p.row[0]
+          let v: Vec2 = [parseFloat(p.row[1]), parseFloat(p.row[2])]
+          data.add(v)
+          dateSeq.add(date)
+        else:
+          echo WARNING & i.intToStr & "row: " & DATA_CSV_FORMAT_ERROR
+        i = i + 1
     else:
-      echo DATA_CSV_FORMAT_ERROR
+      echo ERROR & DATA_CSV_FORMAT_ERROR
       quit(1)
 
   close(p)

@@ -10,14 +10,13 @@ import core/graph
 
 
 proc showHelp() =
-  echo """
-  first argument :
-    correlation - calc corrrelation.
-    graph       - show graph as html.
-    help        - show help.
-  graph option :
-    --setting-file setting.json
-  """
+  echo """First argument :
+  correlation - calc corrrelation.
+  graph       - show graph as html.
+  help        - show help.
+Graph option :
+  --setting-file setting.json
+"""
 
 proc main() =
   let pCount: int = paramCount()
@@ -28,11 +27,15 @@ proc main() =
   elif pCount >= 1:
     execType = paramStr(1)
 
+  if not checkExecType(execType):
+    echo ERROR & execType & NO_EXEC_TYPE
+    quit(1)
+
   if parseEnum[EXEC_TYPE](execType) == EXEC_TYPE.HELP:
     showHelp()
     quit(0)
   elif parseEnum[EXEC_TYPE](execType) == EXEC_TYPE.CORRELATION:
-    if pCount == 2:
+    if pCount >= 2:
       # read data file.
       let dataFilePath = paramStr(2)
       if isExistFile(dataFilePath):
@@ -42,21 +45,21 @@ proc main() =
         let correl: float = correlation(data)
         echo correl
       else:
-        echo "Data file" & FILE_NOT_EXISTS
+        echo ERROR & "Data file" & FILE_NOT_EXISTS
         quit(1)
     else:
-      echo "Please Data file path as Second argument."
+      echo ERROR & NO_DATA_FILE_PATH
       quit(1)
   elif parseEnum[EXEC_TYPE](execType) == EXEC_TYPE.GRAPH:
     if 2 <= pCount and pCount <= 4:
-      # read daa file.
+      # read data file.
       let dataFilePath = paramStr(2)
       var data: seq[Vec2]
       var dateSeq: seq[string]
       if isExistFile(dataFilePath):
         (data, dateSeq) = readCsv(dataFilePath, execType)
       else:
-        echo "Data file" & FILE_NOT_EXISTS
+        echo ERROR & "Data file" & FILE_NOT_EXISTS
         quit(1)
 
       var option: GraphOption
@@ -76,13 +79,13 @@ proc main() =
             if isExistFile(settingPathVal):
               option = readSettingJson(settingPathVal)
             else:
-              echo "Setting File" & FILE_NOT_EXISTS
+              echo ERROR & "Setting File" & FILE_NOT_EXISTS
               quit(1)
           else:
-            echo SETTING_FILE_VALUE_ERROR
+            echo ERROR & SETTING_FILE_VALUE_ERROR
             quit(1)
         else:
-          echo SETTING_FILE_VALUE_ERROR
+          echo ERROR & SETTING_FILE_VALUE_ERROR
           quit(1)
       if pCount == 4:
         let settingPath: string = paramStr(3)
@@ -91,15 +94,15 @@ proc main() =
           if isExistFile(settingPathVal):
             option = readSettingJson(settingPathVal)
           else:
-            echo "Setting File" & FILE_NOT_EXISTS
+            echo ERROR & "Setting File" & FILE_NOT_EXISTS
             quit(1)
         else:
-          echo SETTING_FILE_VALUE_ERROR
+          echo ERROR & SETTING_FILE_VALUE_ERROR
           quit(1)
       # show.
       showGraph(data, dateSeq, option)
     else:
-      echo "Please Data file path as Second argument."
+      echo ERROR & NO_DATA_FILE_PATH
       quit(1)
 
     quit(0)
@@ -107,4 +110,3 @@ proc main() =
 
 when isMainModule:
   main()
-
